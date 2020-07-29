@@ -1,23 +1,26 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[appResaltado]'
 })
 export class ResaltadoDirective {
 
+  @Input("appResaltado") nuevoColor: string;
+
   constructor(
     private elementRef: ElementRef
-  ) {
-    console.log("Directiva llamada");
-    
+  ) { }
+
+  @HostListener('mouseenter') mouseEnter(): void {
+    this.resaltar(this.nuevoColor || 'yellow');
   }
 
-  @HostListener('mouseenter') mouseEnter() {
-    this.elementRef.nativeElement.style.backgroundColor = "yellow";
+  @HostListener('mouseleave') mouseSalio(): void {
+    this.resaltar(null);
   }
 
-  @HostListener('mouseleave') mouseSalio() {
-    this.elementRef.nativeElement.style.backgroundColor = null;
+  private resaltar(color: string): void{
+    this.elementRef.nativeElement.style.backgroundColor = color;
   }
 
 }
