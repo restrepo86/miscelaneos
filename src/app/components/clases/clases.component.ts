@@ -9,7 +9,7 @@ export class ClasesComponent implements OnInit {
   alerta = 'alert-danger';
   loading = false;
 
-  propiedades: Object = {
+  propiedades: any = {
     danger: false
   };
 
@@ -18,7 +18,7 @@ export class ClasesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ejecutar() {
+  ejecutar(): void {
     this.loading = true;
 
     setTimeout(() =>  this.loading = false, 3000);
